@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <!-- heart是组件的一个属性，那么组件必须通过props声明这个属性 -->
+        <!-- <guolele v-bind:heart="article"></guolele> 
+        <guolele v-bind:heart="article2"></guolele> -->
+        <guolele v-for="article in articleList" :key="article.title" :heart="article"></guolele>
+    </div>
+    <script>
+        //定义guolele这个自定义组件
+        //第一个参数是自定义组件的标签名称，第二参数是定义该组件的运行规则对象
+        Vue.component('guolele',{
+            props:['heart'],
+
+            // template中定义的是组件的模板，也就是html和{{}}以及vue指令的组合
+            // template必须要有根标签 例如 <h1></h1><h2></h2>不合法， <div><h1></h1><h2></h2></div>合法的
+            template:'<div>'+
+                        '<h1 style="color:red">{{heart.title}}</h1>'+
+                        '<h2>作者：{{heart.author}}</h2>'+
+                        '<h3>时间：{{heart.publishDate}}</h3>'+
+                        '<p>{{heart.content}}</p>'+
+                    '</div>'
+        });
+
+        var app = new Vue({
+            el:"#app",
+            data:{
+               articleList:[
+                    {
+                        title:"我也喜欢二次元",
+                        author:"zqr",
+                        publishDate:"2019-12-10",
+                        content:"冲还是要冲的"
+                    },
+                    {
+                        title:"你吼那么大声干嘛",
+                        author:"zqr",
+                        publishDate:"2019-12-11",
+                        content:"你再骂"
+                    },
+                    {
+                        title:"我是练习两年半的篮球练习生",
+                        author:"zqr",
+                        publishDate:"2019-12-13",
+                        content:"鸡你太美"
+                    },
+                    {
+                        title:"刚刚那拳只是警告",
+                        author:"zqr",
+                        publishDate:"2019-12-13",
+                        content:"我来抓你了"
+                    }
+               ]
+            }
+        })
+    </script>
+    <style>
+    
+    </style>
+</body>
+</html>
